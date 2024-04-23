@@ -20,7 +20,7 @@ This project is a Todo application implemented using the MERN (MongoDB, Express.
 
 3. **AI Suggestions:**
    - The application leverages AI to provide intelligent suggestions for todo management.
-   - Suggestions may include prioritizing tasks, organizing todos based on deadlines, or categorizing todos based on user behavior.
+   - Suggestions may include prioritizing tasks, organizing todos based on deadlines
 
 ### Technologies Used:
 
