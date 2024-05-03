@@ -12,7 +12,15 @@ const signinSchema = zod.object({
   password: zod.string().min(8),
 });
 
+const createTodoSchema = zod.object({
+  title: zod.string(),
+  description: zod.string(),
+  owner: zod.string(),
+  isCompleted: zod.boolean(),
+});
+
 module.exports = {
   signupSchema,
   signinSchema,
+  createTodoSchema,
 };

@@ -46,11 +46,14 @@ const todoSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: false,
   },
   owner: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: "User",
+  },
+  isCompleted: {
+    type: Boolean,
+    default: false,
   },
 });
 
