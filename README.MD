@@ -2,7 +2,7 @@
 
 ### Description:
 
-This project is a Todo application implemented using the MERN (MongoDB, Express.js, React.js, Node.js) stack. It allows users to register, login, add, delete, mark as complete, and search todos. Additionally, it incorporates AI suggestions to assist users in managing their tasks efficiently.
+This project is a Todo application implemented using the MERN (MongoDB, Express.js, React.js, Node.js) stack. It allows users to register, login, add, delete, mark as complete, and search todos.
 
 ### Features:
 
