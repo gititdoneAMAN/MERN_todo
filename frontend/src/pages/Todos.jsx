@@ -3,12 +3,9 @@ import Input from "../components/Input";
 
 export default function Todos() {
   return (
-    <div className="bg-[#000537] h-screen flex justify-center">
-      <div>
-        <div>
-          <Heading label={"Hello"} />
-          <Input placeholder={"Enter here"} label={"Username"} type={"text"} />
-        </div>
+    <div className="bg-[#000517] h-screen w-screen flex justify-center items-center">
+      <div className="w-[800px] h-[450px] rounded-lg shadow-2xl shadow-[#000997] bg-white p-3">
+        <div></div>
       </div>
     </div>
   );
