@@ -8,7 +8,7 @@ export default function Task({ title }) {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            className="w-6 h-6 bg-white rounded-lg hover:bg-red-600 ease-out duration-300"
+            className="w-6 h-6 bg-white rounded-lg cursor-pointer hover:bg-red-600 ease-out duration-300"
           >
             <path
               fill-rule="evenodd"

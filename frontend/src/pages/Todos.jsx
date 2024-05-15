@@ -14,7 +14,7 @@ export default function Todos() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="w-10 h-10 shadow-2xl shadow-[#000997] rounded-full absolute top-3 right-4 bg-white hover:bg-red-700 ease-in duration-150 "
+              className="w-10 h-10 shadow-2xl shadow-[#000997] cursor-pointer rounded-full absolute top-3 right-4 bg-white hover:bg-red-700 ease-in duration-150 "
             >
               <path
                 fill-rule="evenodd"
