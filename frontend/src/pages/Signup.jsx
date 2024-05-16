@@ -77,7 +77,10 @@ export default function Signup() {
                       password,
                     }
                   );
-
+                  localStorage.setItem(
+                    "token",
+                    `Bearer ${response.data.token}`
+                  );
                   console.log(response.data);
                 }}
               />
