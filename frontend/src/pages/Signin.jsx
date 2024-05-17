@@ -4,10 +4,15 @@ import Input from "../components/Input";
 import SubHeading from "../components/SubHeading";
 import { useState } from "react";
 import axios from "axios";
+import Notification from "../components/Notification";
+import { useNavigate } from "react-router-dom";
 
 export default function Signin() {
+  const [value, setValue] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
   const [password, setPassword] = useState("");
   const [username, setUserName] = useState("");
+  const navigate = useNavigate();
 
   return (
     <div className="bg-[#000517] h-screen w-screen flex justify-center items-center">
@@ -54,8 +59,24 @@ export default function Signin() {
                     `Bearer ${response.data.token}`
                   );
                   console.log(response.data.token);
+                  setValue(response);
+                  setShowAlert(true);
+                  setTimeout(() => {
+                    navigate("/todos");
+                  }, 1000);
                 }}
               />
+            </div>
+            <div className="absolute top-4 left-[600px]">
+              {showAlert ? (
+                <Notification
+                  data={value != "" ? value.data.msg : value}
+                  showAlert={showAlert}
+                  setShowAlert={setShowAlert}
+                />
+              ) : (
+                ""
+              )}
             </div>
             <div>
               <SubHeading value={"Not a user yet? Signup."} />

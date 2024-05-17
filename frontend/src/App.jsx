@@ -5,6 +5,7 @@ import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import Todos from "./pages/Todos";
 import CreateTodos from "./pages/CreateTodos";
+import Test from "./pages/Test";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -17,6 +18,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/todos" element={<Todos />} />
           <Route path="/createtodos" element={<CreateTodos />} />
+          <Route path="/test" element={<Test />} />
         </Routes>
       </BrowserRouter>
     </>
