@@ -15,8 +15,8 @@ const signinSchema = zod.object({
 const createTodoSchema = zod.object({
   title: zod.string(),
   description: zod.string(),
-  owner: zod.string(),
-  isCompleted: zod.boolean(),
+  // owner: zod.string(),
+  // isCompleted: zod.boolean(),
 });
 
 module.exports = {

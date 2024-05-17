@@ -13,7 +13,7 @@ function authMiddleware(req, res, next) {
       console.log(req.userId);
       next();
     } catch (err) {
-      res.status(400).json({ msg: "Invalid Token" });
+      res.status(400).json({ msg: "Invalid Token Error" });
     }
   }
 }
