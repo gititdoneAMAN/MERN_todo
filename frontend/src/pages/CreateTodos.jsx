@@ -1,12 +1,37 @@
 import Input from "../components/Input";
 import TextAreaComponent from "../components/TextAreaComponent";
 import ButtonComponent from "../components/ButtonComponent";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Notification from "../components/Notification";
 
 export default function CreateTodos() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [value, setValue] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+
+  const navigate = useNavigate();
+  const iconRef = useRef(null);
+
+  useEffect(() => {
+    const icon = iconRef.current;
+
+    function handleClick() {
+      navigate("/todos");
+    }
+
+    if (iconRef) {
+      icon.addEventListener("click", handleClick);
+    }
+
+    return () => {
+      if (iconRef) {
+        icon.removeEventListener("click", handleClick);
+      }
+    };
+  }, []);
 
   return (
     <div className="bg-[#000517] h-screen w-screen flex justify-center items-center">
@@ -29,6 +54,7 @@ export default function CreateTodos() {
               viewBox="0 0 24 24"
               fill="currentColor"
               className="w-10 h-10 absolute top-[60px] right-[330px] rounded-full bg-white hover:bg-red-700 ease-in duration-150 cursor-pointer"
+              ref={iconRef}
             >
               <path
                 fill-rule="evenodd"
@@ -63,8 +89,24 @@ export default function CreateTodos() {
                     },
                   }
                 );
+                setValue(response);
+                setShowAlert(true);
+                setTimeout(() => {
+                  navigate("/todos");
+                }, 2000);
               }}
             />
+          </div>
+          <div className="absolute top-4 left-[600px]">
+            {showAlert ? (
+              <Notification
+                data={value != "" ? value.data.msg : value}
+                showAlert={showAlert}
+                setShowAlert={setShowAlert}
+              />
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
