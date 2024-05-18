@@ -1,4 +1,29 @@
+import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+
 export default function Search() {
+  const iconRef = useRef(null);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const icon = iconRef.current;
+
+    function handleClick() {
+      navigate("/createtodos");
+    }
+
+    if (iconRef) {
+      icon.addEventListener("click", () => {
+        navigate("/createtodos");
+      });
+    }
+
+    return () => {
+      if (iconRef) {
+        icon.removeEventListener("click", handleClick);
+      }
+    };
+  }, []);
+
   return (
     <div className="flex gap-3 pt-3">
       <div className="w-full">
@@ -15,6 +40,7 @@ export default function Search() {
             viewBox="0 0 24 24"
             fill="currentColor"
             className="w-10 h-10 rounded-full hover:bg-red-700 ease-in duration-150"
+            ref={iconRef}
           >
             <path
               fill-rule="evenodd"

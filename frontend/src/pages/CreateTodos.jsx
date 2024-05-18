@@ -16,6 +16,9 @@ export default function CreateTodos() {
   const iconRef = useRef(null);
 
   useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/signin");
+    }
     const icon = iconRef.current;
 
     function handleClick() {

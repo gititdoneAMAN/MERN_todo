@@ -1,10 +1,56 @@
+import { useRef, useState } from "react";
 import Search from "../components/Search";
 import Task from "../components/Task";
+import { useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Todos() {
+  const [todoData, setTodoData] = useState([]);
+  // const [deleteData, setDeleteData] = useState("");
+
+  let deleteData = "";
+  let key = 0;
+  let timeStamp;
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/signin");
+    }
+    axios
+      .get("http://localhost:3000/api/v1/user/getTodo", {
+        headers: {
+          authorization: localStorage.getItem("token"),
+        },
+      })
+      .then(async (response) => {
+        setTodoData(response.data.task);
+        console.log(todoData);
+      });
+
+    timeStamp = setInterval(() => {
+      axios
+        .get("http://localhost:3000/api/v1/user/getTodo", {
+          headers: {
+            authorization: localStorage.getItem("token"),
+          },
+        })
+        .then(async (response) => {
+          setTodoData(response.data.task);
+          console.log(todoData);
+        });
+    }, 5000);
+
+    return () => {
+      clearInterval(timeStamp);
+    };
+  }, []);
+
   return (
     <div className="bg-[#000517] h-screen w-screen flex justify-center items-center">
-      <div className="w-[800px] h-[450px] rounded-lg shadow-2xl shadow-[#000997] bg-white py-3 px-6">
+      <div className="w-[800px] h-[450px] rounded-lg shadow-2xl shadow-[#000997] bg-white py-3 px-6 overflow-hidden">
         <div>
           <div>
             <Search />
@@ -24,10 +70,13 @@ export default function Todos() {
             </svg>
           </div>
           <div className="mt-4">
-            <Task title={"Work from home"} />
-            <Task title={"Work from home"} />
-            <Task title={"Work from home"} />
-            <Task title={"Work from home"} />
+            {todoData.map((i) => {
+              // setDeleteData(i._id);
+              deleteData = i._id;
+              return (
+                <Task key={key++} deleteData={deleteData} title={i.title} />
+              );
+            })}
           </div>
         </div>
       </div>

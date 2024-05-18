@@ -1,4 +1,32 @@
-export default function Task({ title }) {
+import { useEffect, useRef } from "react";
+import axios from "axios";
+
+export default function Task({ title, deleteData }) {
+  const iconRef = useRef(null);
+
+  useEffect(() => {
+    const icon = iconRef.current;
+
+    async function handleClick() {
+      alert("delete");
+      const response = await axios.post(
+        "http://localhost:3000/api/v1/user/deleteTodo",
+        {
+          taskId: deleteData,
+        },
+        {
+          headers: {
+            authorization: localStorage.getItem("token"),
+          },
+        }
+      );
+    }
+
+    if (iconRef) {
+      icon.addEventListener("click", handleClick);
+    }
+  }, []);
+
   return (
     <div className="flex bg-[#f2ebda] py-3 px-6 my-2 rounded-lg justify-between hover:bg-[#ebdcb7] ease-in duration-200">
       <div className="flex gap-3">
@@ -15,6 +43,7 @@ export default function Task({ title }) {
           viewBox="0 0 24 24"
           fill="currentColor"
           className="w-6 h-6 bg-white rounded-lg cursor-pointer hover:bg-red-600 ease-out duration-300"
+          ref={iconRef}
         >
           <path
             fill-rule="evenodd"

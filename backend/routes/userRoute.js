@@ -91,12 +91,12 @@ router.post("/createTodo", authMiddleware, async (req, res) => {
 
 router.get("/getTodo", authMiddleware, async (req, res) => {
   const user = await User.findOne({ username: req.userId });
-  console.log(user.tasks.length);
+
   const todos = [];
 
   for (let i = 0; i < user.tasks.length; i++) {
     const value = await TodosTable.findOne({ _id: user.tasks[i] });
-    console.log(value);
+
     todos.push(value);
   }
 
@@ -139,7 +139,7 @@ router.get("/getTodo", authMiddleware, async (req, res) => {
 
 // ----------------Delete-Todos_Route-------------------------------//
 
-router.delete("/deleteTodo", authMiddleware, async (req, res) => {
+router.post("/deleteTodo", authMiddleware, async (req, res) => {
   try {
     const dataId = req.body.taskId;
     const dataArray = [];
@@ -169,7 +169,7 @@ router.delete("/deleteTodo", authMiddleware, async (req, res) => {
 router.post("/updateTodo", authMiddleware, async (req, res) => {
   try {
     const taskId = req.body.taskId;
-    console.log(taskId);
+
     let value;
 
     req.body.updateValue ? (value = true) : (value = false);
